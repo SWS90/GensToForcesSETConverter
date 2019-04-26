@@ -8,6 +8,8 @@ using System.Linq;
 using HedgeLib;
 using System.Xml.Linq;
 using System.Numerics;
+using GensToForcesSETConverter;
+
 namespace GensToForces
 {
     public class Program
@@ -65,7 +67,7 @@ namespace GensToForces
             }
             Console.WriteLine("Creating Objects...");
 
-            foreach (SetObject setObject_Gens in gensSetData.Objects)
+            foreach (GensSetObject setObject_Gens in gensSetData.Objects)
             {
                 //SuperSonic16's Entries start here - Fixed by SWS90 to reflect final Forces templates, and to more accurately convert SET data.
                 SetObject setObject_Forces = new SetObject();
@@ -2365,7 +2367,7 @@ namespace GensToForces
                     }
 
                     // Add Object to List
-                    set.Objects.Add(new SetObject()
+                    set.Objects.Add(new GensSetObject()
                     {
                         ObjectType = elemName,
                         Parameters = parameters,
@@ -2378,6 +2380,7 @@ namespace GensToForces
                 }
             }
         }
+
         public static SetObjectTransform GenTransform(SetObjectTransform trans)
         {
             return new SetObjectTransform
