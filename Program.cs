@@ -21,6 +21,7 @@ namespace GensToForces
         public static void Main(string[] args)
         {
             var GensObjToGismo = new List<string>();
+            var GensObjPhysicsToGismo = new List<string>();
 
             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-us");
             if (args.Length < 1 || !File.Exists(args[0]))
@@ -1480,11 +1481,12 @@ namespace GensToForces
                         };
                         forcesSetData.Objects.Add(item2);
                     }
-                    else
+                    else // Convert ObjectPhysics not yet in code to Forces ObjGismo
                     {
                         string type2 = GetParamByName("Type", setObject_Gens.Parameters).Data + "";
                         setObject_Forces.ObjectType = "ObjGismo";
                         setObject_Forces.ObjectID = setObject_Gens.ObjectID;
+                        GensObjPhysicsToGismo.Add(type);
                         uint RBL = 56;
                         setObject_Forces.CustomData.Add("RangeIn", new SetObjectParam(typeof(float), 0f));
                         setObject_Forces.CustomData.Add("RangeOut", new SetObjectParam(typeof(float), 0f));
@@ -2206,6 +2208,7 @@ namespace GensToForces
             forcesSetData.Save(filePath, true);
             Console.WriteLine("Forces Gedit Saved!");
             File.WriteAllLines("GensObjToGismo.txt", GensObjToGismo.Distinct().OrderBy(x => x));
+            File.WriteAllLines("GensObjPhysicsToGismo.txt", GensObjPhysicsToGismo.Distinct().OrderBy(x => x));
             Console.WriteLine("Done!\nPress any key to close...");
             Console.ReadKey();
         }
