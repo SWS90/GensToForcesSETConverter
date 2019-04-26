@@ -1,0 +1,1 @@
+Generations templates are from https://github.com/SKmaric/libgens-sonicglvl/tree/master/database/objects
