@@ -91,6 +91,7 @@ namespace GensToForces
                         foreach (SetObjectTransform setObjectTransform in setObject_Gens.Children)
                         {
                             var trans2 = GenTransform(setObjectTransform);
+                            trans2.Position.Y -= 6;
                             SetObject item = new SetObject
                             {
                                 ObjectType = objectType,
@@ -106,6 +107,7 @@ namespace GensToForces
                     }
 
                     var trans = GenTransform(setObject_Gens.Transform);
+                    trans.Position.Y -= 6;
                     SetObject item2 = new SetObject
                     {
                         ObjectType = objectType,
@@ -251,6 +253,7 @@ namespace GensToForces
                         foreach (SetObjectTransform setObjectTransform in setObject_Gens.Children)
                         {
                             var trans2 = GenTransform(setObjectTransform);
+                            trans2.Position.Y -= 6;
                             SetObject item = new SetObject
                             {
                                 ObjectType = objectType,
@@ -266,6 +269,7 @@ namespace GensToForces
                     }
 
                     var trans = GenTransform(setObject_Gens.Transform);
+                    trans.Position.Y -= 6;
                     SetObject item2 = new SetObject
                     {
                         ObjectType = objectType,
@@ -464,6 +468,7 @@ namespace GensToForces
                         foreach (SetObjectTransform setObjectTransform in setObject_Gens.Children)
                         {
                             var trans2 = GenTransform(setObjectTransform);
+                            trans2.Position.Y -= 6;
                             SetObject item = new SetObject
                             {
                                 ObjectType = objectType,
@@ -479,6 +484,7 @@ namespace GensToForces
                     }
 
                     var trans = GenTransform(setObject_Gens.Transform);
+                    trans.Position.Y -= 6;
                     SetObject item2 = new SetObject
                     {
                         ObjectType = objectType,
@@ -1710,6 +1716,7 @@ namespace GensToForces
                         foreach (SetObjectTransform setObjectTransform in setObject_Gens.Children)
                         {
                             var trans2 = GenTransform(setObjectTransform);
+                            trans2.Position.Y -= 7;
                             SetObject item = new SetObject
                             {
                                 ObjectType = objectType,
@@ -1725,6 +1732,7 @@ namespace GensToForces
                     }
 
                     var trans = GenTransform(setObject_Gens.Transform);
+                    trans.Position.Y -= 7;
                     SetObject item2 = new SetObject
                     {
                         ObjectType = objectType,
