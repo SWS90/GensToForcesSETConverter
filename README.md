@@ -19,4 +19,4 @@ Converts object layout data from Sonic Generations to Sonic Forces.
 <br />
 <br />You can view the code changes to HedgeLib here https://github.com/SWS90/HedgeLib/tree/directX
 <br />If you come across any problems, either open a new issue on GitHub, or DM me on Discord. SWS90#5701
-<br />Want to add objects to convert? Make a Pull Request and I'll look it over.s.
+<br />Want to add objects to convert? Make a Pull Request and I'll look it over.
