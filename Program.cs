@@ -2158,6 +2158,62 @@ namespace GensToForces
                     };
                     forcesSetData.Objects.Add(item2);
                 }
+                else if (setObject_Gens.ObjectType == "Balloon")
+                {
+                    setObject_Forces.ObjectType = "ObjBalloon2";
+
+                    setObject_Forces.ObjectID = setObject_Gens.ObjectID;
+                    float ForcesRangeInAndOut = float.Parse(GetParamByName("Range", setObject_Gens.Parameters).Data + "") * 10f;
+                    uint RBL = 24;
+                    setObject_Forces.CustomData.Add("RangeIn", new SetObjectParam(typeof(float), ForcesRangeInAndOut));
+                    setObject_Forces.CustomData.Add("RangeOut", new SetObjectParam(typeof(float), ForcesRangeInAndOut));
+                    setObject_Forces.CustomData.Add("RawByteLength", new SetObjectParam(typeof(uint), RBL));
+                    
+                    float UpSpeed = float.Parse(GetParamByName("UpSpeed", setObject_Gens.Parameters).Data + "") * 10f;
+                    float MinSpeed = float.Parse(GetParamByName("SpeedMin", setObject_Gens.Parameters).Data + "") * 10f;
+                    float MaxSpeed = float.Parse(GetParamByName("SpeedMax", setObject_Gens.Parameters).Data + "") * 10f;
+                    float ResetTime = float.Parse(GetParamByName("ReviveTime", setObject_Gens.Parameters).Data + "");
+                    bool DoesInstantAppear = bool.Parse(GetParamByName("IsDefaultPositionRecover", setObject_Gens.Parameters).Data + "");
+
+                    setObject_Forces.Parameters.Add(new SetObjectParam(typeof(byte), Convert.ChangeType(0, typeof(byte)))); //Dimension
+                    setObject_Forces.Parameters.Add(new SetObjectParam(typeof(float), UpSpeed));
+                    setObject_Forces.Parameters.Add(new SetObjectParam(typeof(float), MinSpeed));
+                    setObject_Forces.Parameters.Add(new SetObjectParam(typeof(float), MaxSpeed));
+                    setObject_Forces.Parameters.Add(new SetObjectParam(typeof(float), ResetTime));
+                    setObject_Forces.Parameters.Add(new SetObjectParam(typeof(bool), DoesInstantAppear));
+
+                    List<SetObjectParam> parameters = setObject_Forces.Parameters;
+                    string objectType = setObject_Forces.ObjectType;
+                    if (setObject_Gens.Children != null)
+                    {
+                        foreach (SetObjectTransform setObjectTransform in setObject_Gens.Children)
+                        {
+                            var trans2 = GenTransform(setObjectTransform);
+                            SetObject item = new SetObject
+                            {
+                                ObjectType = objectType,
+                                ObjectID = setObject_Forces.ObjectID,
+                                Parameters = parameters,
+                                Transform = trans2,
+                                CustomData = setObject_Forces.CustomData
+
+                            };
+
+                            forcesSetData.Objects.Add(item);
+                        }
+                    }
+
+                    var trans = GenTransform(setObject_Gens.Transform);
+                    SetObject item2 = new SetObject
+                    {
+                        ObjectType = objectType,
+                        ObjectID = setObject_Forces.ObjectID,
+                        Parameters = parameters,
+                        Transform = trans,
+                        CustomData = setObject_Forces.CustomData
+                    };
+                    forcesSetData.Objects.Add(item2);
+                }
                 else // Convert objects not yet in code to Forces ObjGismo
                 {
                     string type2 = setObject_Gens.ObjectType;
