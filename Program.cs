@@ -1743,9 +1743,68 @@ namespace GensToForces
                     };
                     forcesSetData.Objects.Add(item2);
                 }
-                else if (setObject_Gens.ObjectType == "Spring" || setObject_Gens.ObjectType == "AirSpring" || setObject_Gens.ObjectType == "SpringFake")
+                else if (setObject_Gens.ObjectType == "Spring" || setObject_Gens.ObjectType == "SpringFake")
                 {
                     setObject_Forces.ObjectType = "ObjSpring";
+                    setObject_Forces.ObjectID = setObject_Gens.ObjectID;
+                    float ForcesRangeInAndOut = float.Parse(GetParamByName("Range", setObject_Gens.Parameters).Data + "") * 10f;
+                    uint RBL = 112;
+                    setObject_Forces.CustomData.Add("RangeIn", new SetObjectParam(typeof(float), ForcesRangeInAndOut));
+                    setObject_Forces.CustomData.Add("RangeOut", new SetObjectParam(typeof(float), ForcesRangeInAndOut));
+                    setObject_Forces.CustomData.Add("RawByteLength", new SetObjectParam(typeof(uint), RBL));
+
+                    float Speed = float.Parse(GetParamByName("FirstSpeed", setObject_Gens.Parameters).Data + "") * 10f;
+                    float OutOfControl = float.Parse(GetParamByName("OutOfControl", setObject_Gens.Parameters).Data + "");
+                    float KeepVelocityDistance = float.Parse(GetParamByName("KeepVelocityDistance", setObject_Gens.Parameters).Data + "") * 10;
+                    setObject_Forces.Parameters.Add(new SetObjectParam(typeof(float), Speed));
+                    setObject_Forces.Parameters.Add(new SetObjectParam(typeof(float), OutOfControl));
+                    setObject_Forces.Parameters.Add(new SetObjectParam(typeof(float), KeepVelocityDistance));
+
+                    setObject_Forces.Parameters.Add(new SetObjectParam(typeof(bool), false)); //IsEventOn
+                    setObject_Forces.Parameters.Add(new SetObjectParam(typeof(bool), false)); //IsHorizon
+                    setObject_Forces.Parameters.Add(new SetObjectParam(typeof(bool), true)); //IsVisible
+
+                    setObject_Forces.Parameters.Add(new SetObjectParam(typeof(ForcesSetData.ObjectReference[]), new ForcesSetData.ObjectReference[0] { })); //Event0
+
+                    setObject_Forces.Parameters.Add(new SetObjectParam(typeof(ForcesSetData.ObjectReference[]), new ForcesSetData.ObjectReference[0] { })); //Event1
+
+                    setObject_Forces.Parameters.Add(new SetObjectParam(typeof(ForcesSetData.ObjectReference[]), new ForcesSetData.ObjectReference[0] { })); //Event2
+
+                    List<SetObjectParam> parameters = setObject_Forces.Parameters;
+                    string objectType = setObject_Forces.ObjectType;
+                    if (setObject_Gens.Children != null)
+                    {
+                        foreach (SetObjectTransform setObjectTransform in setObject_Gens.Children)
+                        {
+                            var trans2 = GenTransform(setObjectTransform);
+                            SetObject item = new SetObject
+                            {
+                                ObjectType = objectType,
+                                ObjectID = setObject_Forces.ObjectID,
+                                Parameters = parameters,
+                                Transform = trans2,
+                                CustomData = setObject_Forces.CustomData
+
+                            };
+
+                            forcesSetData.Objects.Add(item);
+                        }
+                    }
+
+                    var trans = GenTransform(setObject_Gens.Transform);
+                    SetObject item2 = new SetObject
+                    {
+                        ObjectType = objectType,
+                        ObjectID = setObject_Forces.ObjectID,
+                        Parameters = parameters,
+                        Transform = trans,
+                        CustomData = setObject_Forces.CustomData
+                    };
+                    forcesSetData.Objects.Add(item2);
+                }
+                else if (setObject_Gens.ObjectType == "AirSpring")
+                {
+                    setObject_Forces.ObjectType = "ObjSkySpring";
                     setObject_Forces.ObjectID = setObject_Gens.ObjectID;
                     float ForcesRangeInAndOut = float.Parse(GetParamByName("Range", setObject_Gens.Parameters).Data + "") * 10f;
                     uint RBL = 112;
