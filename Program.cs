@@ -603,9 +603,9 @@ namespace GensToForces
                     setObject_Forces.CustomData.Add("RangeIn", new SetObjectParam(typeof(float), ForcesRangeInAndOut));
                     setObject_Forces.CustomData.Add("RangeOut", new SetObjectParam(typeof(float), ForcesRangeInAndOut));
                     setObject_Forces.CustomData.Add("RawByteLength", new SetObjectParam(typeof(uint), RBL));
-                    float Width = float.Parse(GetParamByName("Radius", setObject_Gens.Parameters).Data + "") * 10f;
-                    float Height = float.Parse(GetParamByName("Radius", setObject_Gens.Parameters).Data + "") * 10f;
-                    float Depth = float.Parse(GetParamByName("Radius", setObject_Gens.Parameters).Data + "") * 10f;
+                    float Width = float.Parse(GetParamByName("Radius", setObject_Gens.Parameters).Data + "");
+                    float Height = float.Parse(GetParamByName("Radius", setObject_Gens.Parameters).Data + "");
+                    float Depth = float.Parse(GetParamByName("Radius", setObject_Gens.Parameters).Data + "");
                     var PlateOffsetPos = new Vector3(0, 0, 0);
                     var PlateOffsetRot = new Vector3(0, 0, 0);
 
